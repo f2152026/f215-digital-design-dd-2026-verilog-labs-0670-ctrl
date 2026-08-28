@@ -9,7 +9,7 @@
 //   cla4 block1 (.a(a[7:4]),    .b(b[7:4]),    .cin(c[1]), .sum(sum[7:4]),    .cout(c[2]));
 //   ...
 //   cla4 block15(.a(a[63:60]),  .b(b[63:60]),  .cin(c[15]),.sum(sum[63:60]),  .cout(cout));
-
+`include "../task3/cla4.v"
 module cla64_blocked (
     input  [63:0] a,
     input  [63:0] b,
