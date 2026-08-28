@@ -61,39 +61,22 @@ module cla64_flat(
   //
   // TODO: paste your verified assign statements for c[1] through c[64] here.
 
-  reg [64:1] c_reg;
-  integer k, j;
-  reg term;
+  wire [64:0] full_c;
+  assign full_c[0] = cin;
 
-  always @(*) begin
-    for (k = 0; k < 64; k = k + 1) begin
-      // Base generate term: G_k
-      c_reg[k+1] = g[k];
-
-      // Intermediate terms: (P_k & ... & P_{j+1} & G_j)
-      for (j = 0; j < k; j = j + 1) begin
-        term = g[j];
-        for (integer m = j + 1; m <= k; m = m + 1) begin
-          term = term & p[m];
-        end
-        c_reg[k+1] = c_reg[k+1] | term;
-      end
-
-      // Final carry-in propagation term: (P_k & ... & P_0 & Cin)
-      term = cin;
-      for (integer m = 0; m <= k; m = m + 1) begin
-        term = term & p[m];
-      end
-      c_reg[k+1] = c_reg[k+1] | term;
+  genvar k;
+  generate
+    for (k = 0; k < 64; k = k + 1) begin : gen_carries
+      assign #(2) full_c[k+1] = g[k] | (p[k] & full_c[k]);
+      assign c[k+1] = full_c[k+1];
     end
-  end
+  endgenerate
 
-  assign #(2) c = c_reg;
   assign cout = c[64];
 
   // ---------------------------------------------------------------------
   // Step 3: sum bits
   // ---------------------------------------------------------------------
-  assign #(2) sum = p ^ {c[63:1], cin};
+  assign #(2) sum = p ^ full_c[63:0];
 
 endmodule

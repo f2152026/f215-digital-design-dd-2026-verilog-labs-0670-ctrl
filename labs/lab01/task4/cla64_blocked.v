@@ -34,6 +34,7 @@ module cla64_blocked (
             );
         end
     endgenerate
+    assign cout = c[16];
   // TODO: your sixteen cla4 instances go here.
 endmodule
 

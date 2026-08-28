@@ -41,6 +41,7 @@ module rca64 (
             );
         end
     endgenerate
+    assign cout = c[16];
 
 endmodule
   // TODO: your 64-bit ripple-carry structure goes here.
