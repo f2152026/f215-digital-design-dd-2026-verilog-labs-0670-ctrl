@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 // cla4.v
 // Gate-level 4-bit carry-lookahead adder, matching the lecture circuit.
 // Every gate needs an explicit delay (constant is fine here, e.g. #(2)) --
