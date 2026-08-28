@@ -16,6 +16,7 @@ module cla64_blocked (
 
     wire [16:0] c;
     assign c[0] = cin;
+    assign cout = c[16];
 
     // Instantiate 16 4-bit CLA blocks
     cla4 block0  (.a(a[3:0]),   .b(b[3:0]),   .cin(c[0]),  .sum(sum[3:0]),   .cout(c[1]));
@@ -33,6 +34,6 @@ module cla64_blocked (
     cla4 block12 (.a(a[51:48]), .b(b[51:48]), .cin(c[12]), .sum(sum[51:48]), .cout(c[13]));
     cla4 block13 (.a(a[55:52]), .b(b[55:52]), .cin(c[13]), .sum(sum[55:52]), .cout(c[14]));
     cla4 block14 (.a(a[59:56]), .b(b[59:56]), .cin(c[14]), .sum(sum[59:56]), .cout(c[15]));
-    cla4 block15 (.a(a[63:60]), .b(b[63:60]), .cin(c[15]), .sum(sum[63:60]), .cout(cout));
+    cla4 block15 (.a(a[63:60]), .b(b[63:60]), .cin(c[15]), .sum(sum[63:60]), .cout(c[16]));
 
 endmodule
