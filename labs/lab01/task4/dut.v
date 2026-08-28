@@ -21,5 +21,8 @@ module dut(
 
   // ---- Option 3: blocked 64-bit carry-lookahead adder ----
   // cla64_blocked U_IMPL (.a(a), .b(b), .cin(cin), .sum(sum), .cout(cout));
+  always @(a, b, cin, sum, cout) begin
+        $display("a=%h b=%h cin=%b | sum=%h cout=%b", a, b, cin, sum, cout);
+    end
 
 endmodule
